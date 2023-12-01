@@ -18,7 +18,7 @@ func FindCalibrationValues(input string) int {
 				log.Printf("Error converting [%s] to int: [%v]", ints, err)
 				return -1
 			} else {
-				log.Printf("LINE [%s] EXTRACTED %v CONVERTED [%v]", line, ints, num)
+				//log.Printf("LINE [%s] EXTRACTED %v CONVERTED [%v]", line, ints, num)
 				sum += num
 			}
 		}
@@ -53,7 +53,7 @@ func FindCalibrationValuesExtended(input string) int {
 			return -1
 
 		} else {
-			log.Printf("LINE [%s] EXTRACTED %v CONVERTED [%v]", line, ints, num)
+			//log.Printf("LINE [%s] EXTRACTED %v CONVERTED [%v]", line, ints, num)
 			sum += num
 		}
 	}
@@ -84,6 +84,10 @@ func extractNumbers(line string) []string {
 func findDigit(line string) (string, int) {
 	word := ""
 	for i, char := range line {
+		if i > 5 {
+			return "", -1
+		}
+
 		word += string(char)
 		if digit, ok := matchNumericDigit(word); ok {
 			return digit, i

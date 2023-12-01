@@ -4,6 +4,7 @@ import (
 	"log"
 	"testing"
 	adventofcode2023 "theouteredge/adventOfCode2023"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -27,11 +28,15 @@ func Test_DayOneChallengeOne(t *testing.T) {
 		assert.Fail(t, "Error getting input: %v", err)
 
 	} else {
-		product := FindCalibrationValues(input)
-		log.Printf("The Final Product is: [%v]", product)
+		start := time.Now()
+		sum := FindCalibrationValues(input)
+		elapsed := time.Since(start)
 
-		assert.Greater(t, product, -1, "Product should be greater than -1")
-		assert.Equal(t, 54632, product, "Product should be 54632`")
+		log.Printf("Execution time: %s", elapsed)
+		log.Printf("The Final Sum is: [%v]", sum)
+
+		assert.Greater(t, sum, -1, "sum should be greater than -1")
+		assert.Equal(t, 54632, sum, "sum should be 54632`")
 	}
 }
 
@@ -65,11 +70,19 @@ func Test_DayOneChallengeTwo(t *testing.T) {
 		assert.Fail(t, "Error getting input: %v", err)
 
 	} else {
+		start := time.Now()
 		sum := FindCalibrationValuesExtended(input)
+		elapsed := time.Since(start)
+
+		log.Printf("Execution time: %s", elapsed)
+		log.Printf("The Final Sum is: [%v]", sum)
 
 		assert.Greater(t, sum, -1, "sum should be greater than -1")
 		assert.Equal(t, 54019, sum, "sum should be 54019`")
 	}
 }
+
+// 12.2443ms -> early exit
+// 22.317ms -> first go
 
 //54019
